@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginner Muscle Gain Trainer</title>
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --bg-color: #f4f4f9;
+            --card-bg: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1e1e1e;
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #1e1e1e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #eeeeee;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-badge {
+            background-color: #1e1e1e;
+            color: white;
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .tags {
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #b71c1c;
+        }
+
+        /* Expandable Instructions */
+        .instructions {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+        .instructions.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .instructions strong {
+            color: #1e1e1e;
+        }
+
+        .instructions ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Diet & Tips Lists */
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            background-color: var(--card-bg);
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-list h3 {
+            color: #1e1e1e;
+            margin-bottom: 0.5rem;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 3rem 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Beginner Muscle Gain Trainer</h1>
+        <p>A straightforward guide to packing on muscle, designed specifically for slim beginners. Follow the plan, eat heavy, and stay consistent.</p>
+    </header>
+
+    <div class="container">
+        
+        <h2>Weekly Training Plan</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <img src="https://placehold.co/600x400/1e1e1e/FFF?text=Bench+Press" alt="Bench Press" class="card-img">
+                <div class="card-content">
+                    <div class="card-title">Bench Press <span class="day-badge">Monday - Chest</span></div>
+                    <div class="tags">Sets: 3 | Reps: 8-10</div>
+                    <p class="description">The king of upper body exercises to build a massive chest.</p>
+                    <button class="btn" onclick="toggleInfo('inst-chest')">Show Instructions</button>
+                    
+                    <div id="inst-chest" class="instructions">
+                        <strong>Target Muscles:</strong> Pectorals, Triceps, Shoulders.<br><br>
+                        <strong>Proper Form Tips:</strong>
+                        <ul>
+                            <li>Keep your feet planted flat on the floor.</li>
+                            <li>Maintain a slight arch in your lower back.</li>
+                            <li>Lower the bar to your mid-chest under control.</li>
+                            <li>Push up powerfully, squeezing the chest.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://placehold.co/600x400/1e1e1e/FFF?text=Lat+Pulldown" alt="Lat Pulldown" class="card-img">
+                <div class="card-content">
+                    <div class="card-title">Lat Pulldown <span class="day-badge">Tuesday - Back</span></div>
+                    <div class="tags">Sets: 3 | Reps: 10-12</div>
+                    <p class="description">Creates the "V-taper" look by widening your upper back.</p>
+                    <button class="btn" onclick="toggleInfo('inst-back')">Show Instructions</button>
+                    
+                    <div id="inst-back" class="instructions">
+                        <strong>Target Muscles:</strong> Latissimus Dorsi (Lats), Biceps.<br><br>
+                        <strong>Proper Form Tips:</strong>
+                        <ul>
+                            <li>Grip the bar slightly wider than shoulder-width.</li>
+                            <li>Lean back slightly and puff your chest out.</li>
+                            <li>Pull the bar down to your upper chest.</li>
+                            <li>Focus on pulling your elbows down into your back pockets.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://placehold.co/600x400/1e1e1e/FFF?text=Barbell+Squats" alt="Squats" class="card-img">
+                <div class="card-content">
+                    <div class="card-title">Squats <span class="day-badge">Wednesday - Legs</span></div>
+                    <div class="tags">Sets: 3 | Reps: 8-10</div>
+                    <p class="description">The ultimate foundation builder for overall body mass and leg strength.</p>
+                    <button class="btn" onclick="toggleInfo('inst-legs')">Show Instructions</button>
+                    
+                    <div id="inst-legs" class="instructions">
+                        <strong>Target Muscles:</strong> Quadriceps, Hamstrings, Glutes, Core.<br><br>
+                        <strong>Proper Form Tips:</strong>
+                        <ul>
+                            <li>Keep your chest up and core tight the entire time.</li>
+                            <li>Push your hips back as if sitting in a chair.</li>
+                            <li>Push your knees outward so they do not cave in.</li>
+                            <li>Drive through your heels to stand back up.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://placehold.co/600x400/1e1e1e/FFF?text=Dumbbell+Press" alt="Shoulder Press" class="card-img">
+                <div class="card-content">
+                    <div class="card-title">DB Shoulder Press <span class="day-badge">Thursday - Shoulders</span></div>
+                    <div class="tags">Sets: 3 | Reps: 8-10</div>
+                    <p class="description">Builds broad, rounded shoulders to widen your upper frame.</p>
+                    <button class="btn" onclick="toggleInfo('inst-shoulders')">Show Instructions</button>
+                    
+                    <div id="inst-shoulders" class="instructions">
+                        <strong>Target Muscles:</strong> Deltoids (Shoulders), Triceps.<br><br>
+                        <strong>Proper Form Tips:</strong>
+                        <ul>
+                            <li>Sit on a bench with a backrest for support.</li>
+                            <li>Press the dumbbells straight up above your head.</li>
+                            <li>Do not aggressively arch your lower back.</li>
+                            <li>Lower them slowly until they are level with your ears.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://placehold.co/600x400/1e1e1e/FFF?text=Curls+%26+Pushdowns" alt="Arms Workout" class="card-img">
+                <div class="card-content">
+                    <div class="card-title">Curls & Pushdowns <span class="day-badge">Friday - Arms</span></div>
+                    <div class="tags">Sets: 3 each | Reps: 10-12</div>
+                    <p class="description">Isolates the biceps and triceps to stretch your t-shirt sleeves.</p>
+                    <button class="btn" onclick="toggleInfo('inst-arms')">Show Instructions</button>
+                    
+                    <div id="inst-arms" class="instructions">
+                        <strong>Target Muscles:</strong> Biceps, Triceps.<br><br>
+                        <strong>Proper Form Tips:</strong>
+                        <ul>
+                            <li><strong>Bicep Curls:</strong> Pin your elbows to your sides. Do not swing your body.</li>
+                            <li><strong>Tricep Pushdowns:</strong> Use a cable rope. Keep elbows stationary and push hands down until arms lock out.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://placehold.co/600x400/1e1e1e/FFF?text=Active+Recovery" alt="Recovery" class="card-img">
+                <div class="card-content">
+                    <div class="card-title">Recovery & Rest <span class="day-badge">Weekend</span></div>
+                    <div class="tags">Saturday & Sunday</div>
+                    <p class="description">Your muscles do not grow in the gym; they grow when you rest and eat.</p>
+                    <button class="btn" onclick="toggleInfo('inst-rest')">Show Instructions</button>
+                    
+                    <div id="inst-rest" class="instructions">
+                        <strong>Target:</strong> Central Nervous System & Muscle Repair.<br><br>
+                        <strong>Weekend Protocol:</strong>
+                        <ul>
+                            <li><strong>Saturday:</strong> Light 15-minute stretching or walking to keep blood flowing.</li>
+                            <li><strong>Sunday:</strong> Absolute rest. Prepare your meals for the week.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>Muscle Gain Diet Guide</h2>
+        <p style="text-align: center; margin-bottom: 2rem; color: var(--text-light);">To gain weight, you must be in a caloric surplus. Focus on these high-calorie, low-prep foods that are easy to manage in a hostel setting.</p>
+        
+        <ul class="info-list">
+            <li>
+                <h3>🥚 Eggs & 🥛 Milk</h3>
+                <p>The absolute gold standard for cheap, accessible protein. Grab extra eggs from the mess, or boil them yourself in an electric kettle. Drink full-fat milk daily to easily bump up your calorie intake.</p>
+            </li>
+            <li>
+                <h3>🍌 Banana Shake & 🥜 Peanut Butter</h3>
+                <p>Peanut butter is the ultimate cheat code for slim guys—it requires no refrigeration and is packed with calories and healthy fats. Blend or mix bananas, milk, and a huge scoop of peanut butter for an instant mass gainer shake.</p>
+            </li>
+            <li>
+                <h3>🍗 Chicken / 🧀 Paneer</h3>
+                <p>Whenever the canteen or mess serves chicken or paneer, prioritize eating massive portions of it. These are your heavy-hitting protein sources for muscle repair.</p>
+            </li>
+            <li>
+                <h3>🥣 Oats</h3>
+                <p>Complex carbs are the fuel for your workouts. Mix oats with warm milk and a spoon of peanut butter for a high-energy, heavy breakfast before classes.</p>
+            </li>
+        </ul>
+
+        <hr>
+
+        <h2>Beginner Tips for Success</h2>
+        <ul class="info-list">
+            <li>
+                <h3>🔥 Warm Up Before Workouts</h3>
+                <p>Never walk in and lift heavy immediately. Spend 5-10 minutes doing arm circles, light jogging, or lifting just the empty bar to get blood into the joints.</p>
+            </li>
+            <li>
+                <h3>📐 Focus on Proper Form</h3>
+                <p>Leave your ego at the door. Lifting lighter weights with perfect technique will build much more muscle than lifting heavy weights with terrible, swinging form.</p>
+            </li>
+            <li>
+                <h3>📈 Progressive Overload</h3>
+                <p>To keep growing, your workouts must get harder over time. Aim to either lift slightly more weight or do one extra rep than you did the previous week.</p>
+            </li>
+            <li>
+                <h3>💤 Sleep 7–8 Hours</h3>
+                <p>Balancing AMU classes and grinding for the DSSSB ASO exam is exhausting, but you cannot skip sleep. Your brain needs it for studying, and your muscles physically repair themselves only during deep sleep.</p>
+            </li>
+            <li>
+                <h3>💧 Drink Enough Water</h3>
+                <p>Keep a water bottle on your desk at all times. Aim for 3-4 liters a day, especially if you are taking supplements like creatine.</p>
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        // Simple JavaScript to toggle the exercise instructions
+        function toggleInfo(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('active')) {
+                element.classList.remove('active');
+            } else {
+                element.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
